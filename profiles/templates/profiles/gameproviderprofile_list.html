@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Game Provider Profiles</h2>
+  <ul>
+    {% for profile in game_provider_profiles %}
+      <li><a href="{% url 'gameproviderprofile-detail' profile.pk %}">{{ profile.company_name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %}Edit Profile{% endblock %}
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/forms.css" %}">
+    <!-- Include Flatpickr CSS -->
+{% endblock %}
+{% block content %}
+  <h2>Edit Profile</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.favorite_game.label_tag }} {{ form.favorite_game }}
+    </div>
+    <div class="form-group">
+        {{ form.date_of_birth.label_tag }} {{ form.date_of_birth }}
+    </div>
+    <div class="form-group">
+        {{ form.profile_picture.label_tag }} {{ form.profile_picture }}
+    </div>
+    <div class="form-group">
+        {{ form.bio.label_tag }} {{ form.bio }}
+    </div>
+    <div class="form-group">
+        {{ form.location.label_tag }} {{ form.location }}
+    </div>
+    <div class="form-group">
+        {{ form.mobile_number.label_tag }} {{ form.mobile_number }}
+    </div>
+    <div class="form-group">
+        {{ form.level.label_tag }} {{ form.level }}
+    </div>
+    <div class="form-group">
+        {{ form.facebook_link.label_tag }} {{ form.facebook_link }}
+    </div>
+    <div class="form-group">
+        {{ form.twitter_link.label_tag }} {{ form.twitter_link }}
+    </div>
+    <div class="form-group">
+        {{ form.linkedin_link.label_tag }} {{ form.linkedin_link }}
+    </div>
+    <div class="form-group">
+        {{ form.favorite_genre.label_tag }} {{ form.favorite_genre }}
+    </div>
+    <div class="form-group">
+        {{ form.favorite_platform.label_tag }} {{ form.favorite_platform }}
+    </div>
+        <!-- Toggle switches for notifications -->
+    <div class="form-check form-switch">
+        <input style="margin-left: 5px" class="form-check-input" type="checkbox" id="{{ form.notifications_enabled.id_for_label }}" name="{{ form.notifications_enabled.html_name }}" {% if form.notifications_enabled.value %}checked{% endif %}>
+        <label class="form-check-label" for="{{ form.notifications_enabled.id_for_label }}">
+            Notifications
+        </label>
+    </div>
+    <div class="form-check form-switch">
+        <input style="margin-left: 5px" class="form-check-input" type="checkbox" id="{{ form.is_subscribed.id_for_label }}" name="{{ form.is_subscribed.html_name }}" {% if form.is_subscribed.value %}checked{% endif %}>
+        <label class="form-check-label" for="{{ form.is_subscribed.id_for_label }}">
+            subscribed
+        </label>
+    </div>
+    <div class="form-check form-switch">
+        <input style="margin-left: 5px" class="form-check-input" type="checkbox" id="{{ form.receive_newsletter.id_for_label }}" name="{{ form.receive_newsletter.html_name }}" {% if form.receive_newsletter.value %}checked{% endif %}>
+        <label class="form-check-label" for="{{ form.receive_newsletter.id_for_label }}">
+            newsletter
+        </label>
+    </div>
+
+    <button class="btn bg-gradient-dark btn-sm float-start mt-6 mb-0" type="submit">Save changes</button>
+    <button class="btn bg-gradient-dark btn-sm float-start mt-6 mb-0" href="{% url 'playerprofile-detail' %}">Cancel</button>
+  </form>
+  <!-- Include Flatpickr JS -->
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'assets/js/plugins/flatpickr.min.js' %}"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          if (document.querySelector('.datepicker')) {
+              flatpickr('.datepicker', {
+                  dateFormat: "Y-m-d"  // Customize the date format as needed
+              });
+          }
+      });
+  </script>
+{% endblock extra_js %}

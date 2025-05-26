@@ -1,0 +1,10 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <h2>Player Profiles</h2>
+  <ul>
+    {% for profile in player_profiles %}
+      <li><a href="{% url 'playerprofile-detail' profile.pk %}">{{ profile.user.username }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

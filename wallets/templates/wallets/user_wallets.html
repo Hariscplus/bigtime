@@ -1,0 +1,21 @@
+<h1>Your Wallets</h1>
+<table>
+    <tr>
+        <th>Currency</th>
+        <th>Type</th>
+        <th>Balance</th>
+        <th>Actions</th>
+    </tr>
+    {% for wallet in wallets %}
+    <tr>
+        <td>{{ wallet.currency.name }} ({{ wallet.currency.code }})</td>
+        <td>{{ wallet.currency.get_currency_type_display }}</td>
+        <td>{{ wallet.balance }}</td>
+        <td>
+            {% if wallet.currency.currency_type == 'crypto' %}
+                <a href="#">View Address</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
